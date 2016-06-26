@@ -1,0 +1,106 @@
+
+body {
+    background: #000;
+}
+
+#projection {
+    position: absolute;
+    /*border: 1px solid red;*/
+    overflow: hidden;
+}
+
+.surface {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 50%;
+    overflow: hidden;
+}
+.surface-content {
+    height: 100%;
+}
+
+.surface-top {
+    background: #fafafa;
+    transform: translate(0, -70.65%) rotate(45deg);
+}
+
+.surface-bottom {
+    background: #dababa;
+    transform: translate(0, 70.65%) rotate(45deg);
+}
+
+.surface-left {
+    /*background: #dc7402;*/
+    background: #DC74EE;
+    transform: translate(-70.65%, 0) rotate(45deg);
+}
+
+.surface-right {
+    background: #7402dc;
+    transform: translate(70.65%, 0)rotate(45deg);
+}
+
+.surface-top .surface-content {
+    transform: translate(19%, 19%);
+}
+.surface-right .surface-content {
+    transform: translate(-19%, 19%);
+}
+.surface-bottom .surface-content {
+    transform: translate(-19%, -19%);
+}
+.surface-left .surface-content {
+    transform: translate(19%, -19%);
+}
+
+.surface-content .surface-inner-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+}
+
+.surface-content img {
+    width: 100%;
+// height: 100%;
+// width: 210px;
+// margin-top: 280px;
+    position: relative;
+}
+
+.surface-top .surface-content .surface-inner-wrapper {
+    transform: rotate(135deg);
+}
+
+.surface-right .surface-content .surface-inner-wrapper {
+    transform: rotate(-135deg);
+}
+
+.surface-bottom .surface-content .surface-inner-wrapper {
+    transform: rotate(-45deg);
+}
+
+.surface-left .surface-content .surface-inner-wrapper {
+    transform: rotate(45deg);
+}
+
+.flip .surface-top .surface-content .surface-inner-wrapper {
+    transform: rotate(-45deg);
+}
+
+.flip .surface-right .surface-content .surface-inner-wrapper {
+    transform: rotate(45deg);
+}
+
+.flip .surface-bottom .surface-content .surface-inner-wrapper {
+    transform: rotate(135deg);
+}
+
+.flip .surface-left .surface-content .surface-inner-wrapper {
+    transform: rotate(-135deg);
+}
+
+:-webkit-full-screen {
+    background-color: #000;
+}
