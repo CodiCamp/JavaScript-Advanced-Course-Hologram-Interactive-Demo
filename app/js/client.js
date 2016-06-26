@@ -1,5 +1,10 @@
 (function () {
 
+    var status = document.getElementById('status');
+    var str = {coord:[0,0], test:"test"};
+    var coords = str.coord;
+    var connection = new WebSocket('ws://127.0.0.1:1337');
+
     if (!localStorage._id) {
         localStorage._id = Date.now();
     }
@@ -18,19 +23,12 @@
         //     "<p> id = " + localStorage._id + "</p>";
     });
 
-    var status = document.getElementById('status');
-
-    var str = {coord:[0,0], test:"test"};
-    var coords = str.coord;
-
     window.WebSocket = window.WebSocket || window.MozWebSocket;
 
     if (!window.WebSocket) {
         console.log('WebSocket not supported');
         return;
     }
-
-    var connection = new WebSocket('ws://127.0.0.1:1337');
 
     connection.onopen = function () {
         status.innerHTML = 'You are in control';
