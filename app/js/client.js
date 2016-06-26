@@ -1,5 +1,10 @@
 (function () {
+
     if (gyro.hasFeature('devicemotion')) {
+
+        var status = document.getElementById('status');
+        var connection = new WebSocket('ws://127.0.0.1:1337');
+
         if (!localStorage._id) {
             localStorage._id = Date.now();
         }
@@ -10,8 +15,6 @@
             console.log('WebSocket not supported');
             return;
         }
-
-        var connection = new WebSocket('ws://192.168.0.108:1337');
 
         connection.onopen = function () {
             status.innerHTML = 'You are in control';
@@ -26,4 +29,5 @@
             connection.send(JSON.stringify(coords));
         });
     }
+
 })();
