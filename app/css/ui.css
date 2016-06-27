@@ -2,7 +2,7 @@ body {
     font-size: 16px;
 }
 
-.Entry {
+.entry {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,7 +10,7 @@ body {
     height: 100vh;
 }
 
-.Entry__button {
+.button {
     display: inline-block;
     margin-bottom: 20px;
     border: 1px solid black;
@@ -21,10 +21,6 @@ body {
     text-decoration: none;
 }
 
-.Entry__button:last-child {
+.button:last-child {
     margin-bottom: 0;
-}
-
-.Entry__button:hover {
-    text-decoration: underline;
 }
