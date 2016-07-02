@@ -4,6 +4,7 @@ var http = require('http');
 
 var clients = [ ];
 var displays = [ ];
+var displayIndex = [ ];
 
 var server = http.createServer(function(request, response) {});
 
@@ -20,21 +21,20 @@ wsServer.on('request', function(request) {
 
     var connection = request.accept(null, request.origin);
 
-    var displayIndex = [ ];
-    var clientIndex = [ ];
-    console.log((new Date()) + ' Connection accepted.');
+    connection.id = 0;
 
+    console.log((new Date()) + ' Connection accepted.');
+    console.log(connection.id);
     connection.on('message', function(message) {
         console.log((new Date()) + ' Received: ' + message.utf8Data);
 
-        var obj = {
-                    time: (new Date()).getTime(),
-                    text: message.utf8Data,
-                };
-
-        var json = JSON.stringify({ type:'message', data: obj });
-        if(json = 'display') {
-            displayIndex = displays.push(connection) - 1;
+        var json = JSON.stringify(message.utf8Data);
+        if(json.indexOf('display') > -1) {
+            connection.type = json.split(',')[0];
+            connection.id = json.split(',')[1];
+            displays[connection.id] = connection;
+            displayIndex.push(connection.id);
+            console.log(displayIndex);
         }
         else {
             clientIndex = clients.push(connection) - 1;
@@ -44,10 +44,12 @@ wsServer.on('request', function(request) {
         }
     });
 
-    connection.on('close', function(connection) {
-            console.log(connection);
+    connection.on('close', function(message) {
             console.log((new Date()) + " Peer "
                 + connection.remoteAddress + " disconnected.");
-            clients.splice(clientIndex, 1);
+            delete displays[connection.id];
+            var index = displayIndex.indexOf(connection.id);
+            displayIndex.splice(index, 1);
+            console.log(displayIndex);
     });
-});
+});;
