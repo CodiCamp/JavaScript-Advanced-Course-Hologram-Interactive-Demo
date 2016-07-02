@@ -37,7 +37,9 @@
             }
 
         } catch (e) {
-            console.log('JSON not valid', str.data);
+            var data = JSON.parse(str.data);
+            var message  = JSON.parse(data.data.text);
+            console.error(data, message);
         }
     };
 
@@ -46,7 +48,7 @@
      * @param fishData
      */
     function spawnFish(fishData) {
-
+        console.log('spawn fish', fishData);
         clients[fishData._id] = fishData;
         clients[fishData._id].fishObjects = [];
 
@@ -56,7 +58,7 @@
             fishWrapper.classList.add('fishData._id');
             fishWrapper.innerHTML = fishTemplate;
 
-            clients[message._id].fishObjects.push(fishWrapper);
+            clients[fishData._id].fishObjects.push(fishWrapper);
 
             surface.appendChild(fishWrapper);
         });
@@ -70,7 +72,7 @@
         });
 
 
-        clients[fishData._id] = fishData;
+        clients[fishData._id] = clients[fishData._id].extend(fishData);
     }
 
 })();
