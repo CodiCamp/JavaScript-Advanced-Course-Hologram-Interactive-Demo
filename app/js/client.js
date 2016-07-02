@@ -1,6 +1,6 @@
 (function () {
 
-    var status     = document.getElementById('status');
+    var status= document.getElementById('status');
 
     // if (gyro.hasFeature(['devicemotion', 'deviceorientation'])) {
 
