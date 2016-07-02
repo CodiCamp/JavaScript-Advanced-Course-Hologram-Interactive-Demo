@@ -3,6 +3,7 @@ var webSocketServer = require('websocket').server;
 var http = require('http');
 
 var clients = [ ];
+var displays = [ ];
 
 var server = http.createServer(function(request, response) {});
 
@@ -19,8 +20,8 @@ wsServer.on('request', function(request) {
 
     var connection = request.accept(null, request.origin);
 
-    var index = clients.push(connection) - 1;
-
+    var displayIndex = [ ];
+    var clientIndex = [ ];
     console.log((new Date()) + ' Connection accepted.');
 
     connection.on('message', function(message) {
@@ -32,15 +33,21 @@ wsServer.on('request', function(request) {
                 };
 
         var json = JSON.stringify({ type:'message', data: obj });
-        for (var i=0; i < clients.length; i++) {
-            clients[i].send(json);
+        if(json = 'display') {
+            displayIndex = displays.push(connection) - 1;
+        }
+        else {
+            clientIndex = clients.push(connection) - 1;
+            for (var i=0; i < clients.length; i++) {
+                clients[i].send(json);
+            }
         }
     });
 
     connection.on('close', function(connection) {
+            console.log(connection);
             console.log((new Date()) + " Peer "
                 + connection.remoteAddress + " disconnected.");
-            clients.splice(index, 1);
+            clients.splice(clientIndex, 1);
     });
-
 });

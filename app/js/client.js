@@ -1,6 +1,6 @@
 (function () {
 
-    if (gyro.hasFeature('devicemotion')) {
+    //if (gyro.hasFeature('devicemotion')) {
 
         var status = document.getElementById('status');
         var connection = new WebSocket('ws://127.0.0.1:1337');
@@ -28,6 +28,5 @@
             coords._id = localStorage._id;
             connection.send(JSON.stringify(coords));
         });
-    }
-
+    //}
 })();
