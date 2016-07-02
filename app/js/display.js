@@ -47,8 +47,8 @@
      */
     function spawnFish(fishData) {
 
-        clients[message._id] = message;
-        clients[message._id].fishObjects = [];
+        clients[fishData._id] = fishData;
+        clients[fishData._id].fishObjects = [];
 
         surfacePlaceholders.forEach(function (surface, index) {
             var fishWrapper = document.createElement('div');
@@ -64,13 +64,13 @@
 
     function updateFishPosition (fishData) {
 
-        clients[message._id].fishObjects.forEach(function (fishObject){
+        clients[fishData._id].fishObjects.forEach(function (fishObject){
             //TO DO: transformation
             //transform: translate3d(x,y,z);
         });
 
 
-        clients[message._id] = message;
+        clients[fishData._id] = fishData;
     }
 
 })();
