@@ -2,9 +2,9 @@
 /*fred the fish*/
 .fish_wrap{
     height: 230px;
-    left: 200px;
+    left: 38%;
     position: absolute;
-    top: 105px;
+    top: 35%;
     width: 290px;
     z-index: 90;
 }
@@ -237,24 +237,17 @@
 
 /* start of fish animation */
 .fish_wrap{
-    left: 200px;
-    top: 105px;
     z-index: 100;
     animation-name:swim;
     animation-duration:30s;
     animation-iteration-count:infinite;
     animation-timing-function: linear;
-    /*firefox*/
-    -moz-animation-name:swim;
-    -moz-animation-duration:30s;
-    -moz-animation-iteration-count:infinite;
-    -moz-animation-timing-function: linear;
+
     /*webkit*/
     -webkit-animation-name:swim;
     -webkit-animation-duration:30s;
     -webkit-animation-iteration-count:infinite;
     -webkit-animation-timing-function: linear;
-
 }
 /*@keyframes swim{
     from{
@@ -352,102 +345,7 @@
         left:200px;
     }
 }
-@-moz-keyframes swim{
-    from{
-        left:200px;
-    }
-    20%{
-        left:0px;
-        -moz-transform:scaleX(1);
-        z-index:90;
-    }
-    20.5%{
-        -moz-transform:scaleX(-1);
-        z-index:10;
-        left:-30px;
-    }
-    21%{
-        left:80px;
-    }
-    42%{
-        left:550px;
-    }
-    50%{
-        z-index:28;
-        top:130px;
-        left:630px;
-        -moz-transform:scaleX(-1);
-    }
-    50.5%{
-        -moz-transform:scaleX(1);
-        z-index:100;
-        left:630px;
-        top:160px;
-    }
-    51%{
-        left:530px;
-        z-index:150;
-    }
-    60%{
-        left:300px;
-        z-index:150;
-    }
-    64%{
-        left:200px;
-        z-index:150;
-    }
-    66%{
-        left:80px;
-        z-index:150;
-    }
-    69%{
-        left:-30px;
-        z-index:150;
-    }
-    70%{
-        top:105px;
-        left:-30px;
-        -moz-transform:scaleX(1);
-        z-index:90;
-    }
-    70.5%{
-        -moz-transform:scaleX(-1);
-        z-index:10;
-        left:-30px;
-    }
-    71%{
-        left:40px;
-    }
-    80%{
-        left:550px;
-    }
-    81%{
-        left:550px;
-        top:70px;
-    }
-    82%{
-        left:550px;
-        -moz-transform:scaleX(-1);
-    }
-    82.5%{
-        -moz-transform:scaleX(1);
-        top:70px;
-        left:550px;
-    }
-    84%{
-        top:105px;
-        left:500px;
-        z-index:28;
-    }
-    88%{
-        top:105px;
-        left:400px;
-        z-index:28;
-    }
-    to{
-        left:200px;
-    }
-}
+
 @-webkit-keyframes swim{
     from{
         left:200px;
@@ -572,17 +470,7 @@
         transform:scale(.8)skewY(2deg);
     }
 }
-@-moz-keyframes tail{
-    from{
-        -moz-transform:scale(.8)skewY(2deg);
-    }
-    50%{
-        -moz-transform:scale(.7)skewY(20deg);
-    }
-    to{
-        -moz-transform:scale(.8)skewY(2deg);
-    }
-}
+
 @-webkit-keyframes tail{
     from{
         -webkit-transform:scale(.8)skewY(2deg);
@@ -625,20 +513,7 @@
         transform:scale(.8)skewY(10deg)rotate(15deg);
     }
 }
-@-moz-keyframes midfin{
-    from{
-        -moz-transform:scale(.8)rotate(15deg);
-    }
-    50%{
-        -moz-transform:scale(.6)skewY(30deg)rotate(15deg);
-    }
-    80%{
-        -moz-transform:scale(.8)skewY(10deg)rotate(25deg);
-    }
-    to{
-        -moz-transform:scale(.8)skewY(10deg)rotate(15deg);
-    }
-}
+
 @-webkit-keyframes midfin{
     from{
         -webkit-transform:scale(.8)rotate(15deg);
@@ -694,29 +569,7 @@
         background-color:white;
     }
 }
-@-moz-keyframes blink{
-    from{
-        background-color:white;
-    }
-    49%{
-        background-color:white;
-        height: 27px;
-        width: 10px;
-    }
-    50%{
-        background-color:#070707;
-        height: 20px;
-        width: 5px;
-    }
-    52%{
-        background-color:white;
-        height: 27px;
-        width: 10px;
-    }
-    to{
-        background-color:white;
-    }
-}
+
 @-webkit-keyframes blink{
     from{
         background-color:white;
