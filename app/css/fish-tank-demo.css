@@ -14,6 +14,9 @@
     -webkit-transform: rotate(-37deg);
     -o-transform: rotate(-37deg);
     -ms-transform: rotate(-37deg);
+    position: absolute;
+    top: 26%;
+    left: 36%;
 }
 
 .fish_body{
