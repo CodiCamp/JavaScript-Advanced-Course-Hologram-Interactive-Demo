@@ -2,10 +2,7 @@
 
     var status= document.getElementById('status');
 
-    // if (gyro.hasFeature(['devicemotion', 'deviceorientation'])) {
-
         window.WebSocket = window.WebSocket || window.MozWebSocket;
-
 
         var connection = new WebSocket('ws://127.0.0.1:1337');
 
@@ -28,10 +25,9 @@
 
         gyro.startTracking(function (coords) {
             coords.id = localStorage._id;
+            for (var coord in coords) {
+                coord = coord.toFixed(3);
+            }
             connection.send(JSON.stringify(coords));
         });
-    // }else {
-    //     status.innerHTML = 'Device motion not available';
-    // }
-
 })();

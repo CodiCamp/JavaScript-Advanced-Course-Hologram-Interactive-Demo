@@ -40,7 +40,7 @@ wsServer.on('request', function(request) {
         else {
             json = JSON.parse(json);
             json = json.split(',');
-            console.log(json["gamma"]);
+            console.log(json);
             //connection.type = json._id;
             //connection.id = json.split(',')[1];
             //clients[connection.id] = connection;

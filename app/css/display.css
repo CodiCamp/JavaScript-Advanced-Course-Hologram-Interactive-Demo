@@ -42,16 +42,16 @@ body {
 }
 
 .surface-top .surface-content {
-    transform: translate(19%, 19%);
+    transform: translate(14.5%, 14.5%);
 }
 .surface-right .surface-content {
-    transform: translate(-19%, 19%);
+    transform: translate(-14.5%, 14.5%);
 }
 .surface-bottom .surface-content {
-    transform: translate(-19%, -19%);
+    transform: translate(-14.5%, -14.5%);
 }
 .surface-left .surface-content {
-    transform: translate(19%, -19%);
+    transform: translate(14.5%, -14.5%);
 }
 
 .surface-content .surface-inner-wrapper {
@@ -60,7 +60,9 @@ body {
     position: relative;
     text-align: center;
 }
-
+.surface-inner-wrapper .fred {
+    /*transform: translate(28%, -3%);*/
+}
 .surface-content img {
     width: 100%;
 /*  height: 100%;
@@ -68,7 +70,9 @@ body {
     margin-top: 280px;*/
     position: relative;
 }
-
+.surface-inner-wrapper {
+    position: relative;
+}
 .surface-top .surface-content .surface-inner-wrapper {
     transform: rotate(135deg);
 }
