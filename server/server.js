@@ -2,7 +2,7 @@ var webSocketsServerPort = 1337;
 var webSocketServer = require('websocket').server;
 var http = require('http');
 
-var clients = [ ];
+var clients = { };
 var displays = { };
 var displayIndex = [ ];
 var clientIndex = [ ];
@@ -27,7 +27,7 @@ wsServer.on('request', function(request) {
     console.log((new Date()) + ' Connection accepted.');
     console.log(connection.id);
     connection.on('message', function(message) {
-        //console.log((new Date()) + ' Received: ' + message.utf8Data);
+        console.log((new Date()) + ' Received: ' + message.utf8Data);
 
         var json = JSON.stringify(message.utf8Data);
         if(json.indexOf('display') > -1) {
@@ -35,7 +35,6 @@ wsServer.on('request', function(request) {
             connection.id = json.split(',')[1];
             displays[connection.id] = connection;
             displayIndex.push(connection.id);
-            console.log(displays);
         }
         else {
             json = JSON.parse(message.utf8Data);
@@ -53,11 +52,17 @@ wsServer.on('request', function(request) {
     });
 
     connection.on('close', function(message) {
-            console.log((new Date()) + " Peer "
-                + connection.remoteAddress + " disconnected.");
+        console.log((new Date()) + " Peer " + connection.remoteAddress + " disconnected.");
+
+        if (clientIndex.indexOf(JSON.stringify(connection.id))) {
+            delete clients[connection.id];
+            var index = clientIndex.indexOf(connection.id);
+            clientIndex.splice(index, 1);
+        }
+        else if (displayIndex.indexOf(JSON.stringify(connection.id))) {
             delete displays[connection.id];
             var index = displayIndex.indexOf(connection.id);
             displayIndex.splice(index, 1);
-            console.log(displayIndex);
+        }
     });
 });;
