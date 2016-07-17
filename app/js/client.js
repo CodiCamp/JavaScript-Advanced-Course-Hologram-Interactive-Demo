@@ -1,6 +1,7 @@
 (function () {
 
     var status= document.getElementById('status');
+    var orientation = '';
 
         window.WebSocket = window.WebSocket || window.MozWebSocket;
 
@@ -17,6 +18,10 @@
 
         connection.onopen = function () {
             status.innerHTML = 'You are in control';
+
+            window.addEventListener('orientationchange', function() {
+                orientation = screen.orientation.type.split('-')[0];
+            });
         };
 
         connection.onerror = function (error) {
@@ -33,6 +38,9 @@
                 }
             }
 
+            coords.orientation = orientation;
+
+            console.log(coords);
             connection.send(JSON.stringify(coords));
         });
 })();

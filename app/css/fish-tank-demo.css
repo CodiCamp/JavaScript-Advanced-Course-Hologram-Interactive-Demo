@@ -17,6 +17,7 @@
     position: absolute;
     top: 26%;
     left: 36%;
+    transition: all 0.4s linear;
 }
 
 .fish_body{
