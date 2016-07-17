@@ -25,9 +25,11 @@
 
         gyro.startTracking(function (coords) {
             coords.id = localStorage._id;
+            coords.type = 'client';
             for (var coord in coords) {
-                coord = coord.toFixed(3);
+                coord = parseFloat(coord).toFixed(3);
             }
+
             connection.send(JSON.stringify(coords));
         });
 })();

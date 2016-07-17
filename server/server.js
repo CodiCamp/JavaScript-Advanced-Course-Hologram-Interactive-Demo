@@ -38,18 +38,19 @@ wsServer.on('request', function(request) {
             console.log(json);
         }
         else {
-            json = JSON.parse(json);
-            json = json.split(',');
-            console.log(json);
-            //connection.type = json._id;
-            //connection.id = json.split(',')[1];
-            //clients[connection.id] = connection;
-            //clientIndex.push(connection.id);
-            //console.log(clientIndex);
+            json = JSON.parse(message.utf8Data);
+            if(clientIndex.indexOf(json.id) < 0){
+                connection.type = json.type;
+                connection.id = json.id;
+                clients[connection.id] = connection;
+                clientIndex.push(connection.id);
+                console.log(clientIndex);
+            }
 
-            // for (var i=0; i < clients.length; i++) {
-            //     clients[i].send(json);
-            // }
+
+            for (var i=0; i < clients.length; i++) {
+                displays[i].send(json);
+            }
         }
     });
 
