@@ -1,7 +1,7 @@
 (function () {
 
     var box = document.getElementById('box');
-    var connection = new WebSocket('ws://127.0.0.1:1337');
+    var connection = new WebSocket('ws://192.168.0.123:1337');
     var fishTemplate = '<div class="top_fin"></div><div class="tail_fin"></div> <div class="fish_body"><div class="eye"></div><div class="scale_1"></div><div class="scale_2"></div><div class="scale_3"></div><div class="scale_4"></div></div>';
     var clients = {};
     var surfacePlaceholders = [];
