@@ -27,7 +27,9 @@
             coords._id = localStorage._id;
 
             for (var coord in coords) {
-                coords[coord] = parseFloat(coords[coord]).toFixed(3);
+                if (coord !== "_id" && coord !== "type") {
+                    coords[coord] = parseFloat(coords[coord]).toFixed(3);
+                }
             }
 
             connection.send(JSON.stringify(coords));
