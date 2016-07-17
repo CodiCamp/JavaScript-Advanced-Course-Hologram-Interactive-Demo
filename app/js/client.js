@@ -26,8 +26,9 @@
         gyro.startTracking(function (coords) {
             coords._id = localStorage._id;
             for (var coord in coords) {
-                coord = coord.toFixed(3);
+                coord = parseFloat(coord).toFixed(3);
             }
+
             connection.send(JSON.stringify(coords));
         });
 })();
