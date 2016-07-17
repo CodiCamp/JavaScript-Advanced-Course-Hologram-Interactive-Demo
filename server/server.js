@@ -5,6 +5,7 @@ var http = require('http');
 var clients = [ ];
 var displays = [ ];
 var displayIndex = [ ];
+var clientIndex = [ ];
 
 var server = http.createServer(function(request, response) {});
 
@@ -34,13 +35,21 @@ wsServer.on('request', function(request) {
             connection.id = json.split(',')[1];
             displays[connection.id] = connection;
             displayIndex.push(connection.id);
-            console.log(displayIndex);
+            console.log(json);
         }
         else {
-            clientIndex = clients.push(connection) - 1;
-            for (var i=0; i < clients.length; i++) {
-                clients[i].send(json);
-            }
+            json = JSON.parse(json);
+            json = json.split(',');
+            console.log(json["gamma"]);
+            //connection.type = json._id;
+            //connection.id = json.split(',')[1];
+            //clients[connection.id] = connection;
+            //clientIndex.push(connection.id);
+            //console.log(clientIndex);
+
+            // for (var i=0; i < clients.length; i++) {
+            //     clients[i].send(json);
+            // }
         }
     });
 

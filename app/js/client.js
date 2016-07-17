@@ -7,7 +7,7 @@
         window.WebSocket = window.WebSocket || window.MozWebSocket;
 
 
-        var connection = new WebSocket('ws://192.168.0.123:1337');
+        var connection = new WebSocket('ws://127.0.0.1:1337');
 
         if (!localStorage._id) {
             localStorage._id = Date.now();
@@ -27,7 +27,7 @@
         };
 
         gyro.startTracking(function (coords) {
-            coords._id = localStorage._id;
+            coords.id = localStorage._id;
             connection.send(JSON.stringify(coords));
         });
     // }else {
