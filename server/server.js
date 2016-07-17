@@ -3,8 +3,9 @@ var webSocketServer = require('websocket').server;
 var http = require('http');
 
 var clients = [ ];
-var displays = [ ];
+var displays = { };
 var displayIndex = [ ];
+var clientIndex = [ ];
 
 var server = http.createServer(function(request, response) {});
 
@@ -26,7 +27,7 @@ wsServer.on('request', function(request) {
     console.log((new Date()) + ' Connection accepted.');
     console.log(connection.id);
     connection.on('message', function(message) {
-        console.log((new Date()) + ' Received: ' + message.utf8Data);
+        //console.log((new Date()) + ' Received: ' + message.utf8Data);
 
         var json = JSON.stringify(message.utf8Data);
         if(json.indexOf('display') > -1) {
@@ -34,12 +35,19 @@ wsServer.on('request', function(request) {
             connection.id = json.split(',')[1];
             displays[connection.id] = connection;
             displayIndex.push(connection.id);
-            console.log(displayIndex);
+            console.log(displays);
         }
         else {
-            clientIndex = clients.push(connection) - 1;
-            for (var i=0; i < clients.length; i++) {
-                clients[i].send(json);
+            json = JSON.parse(message.utf8Data);
+            if(clientIndex.indexOf(json._id) < 0){
+                connection.type = json.type;
+                connection.id = json._id;
+                clients[connection.id] = connection;
+                clientIndex.push(connection.id);
+                console.log(clientIndex);
+            }
+            for (var key in displays) {
+                displays[key].send(JSON.stringify(json));
             }
         }
     });

@@ -24,6 +24,7 @@
         };
 
         gyro.startTracking(function (coords) {
+            coords.type = 'client';
             coords._id = localStorage._id;
 
             for (var coord in coords) {
