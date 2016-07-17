@@ -2,7 +2,7 @@
 
     var box = document.getElementById('box');
     var connection = new WebSocket('ws://192.168.0.123:1337');
-    var fishTemplate = '<div class="fred"><div class="top_fin"></div><div class="tail_fin"></div> <div class="fish_body"><div class="eye"></div><div class="scale_1"></div><div class="scale_2"></div><div class="scale_3"></div><div class="scale_4"></div></div></div>';
+    var fishTemplate = '<div class="top_fin"></div><div class="tail_fin"></div> <div class="fish_body"><div class="eye"></div><div class="scale_1"></div><div class="scale_2"></div><div class="scale_3"></div><div class="scale_4"></div></div>';
     var clients = {};
     var surfacePlaceholders = [];
     var displayData = [];
@@ -64,8 +64,8 @@
 
         surfacePlaceholders.forEach(function (surface, index) {
             var fishWrapper = document.createElement('div');
-            fishWrapper.classList.add('fish_wrap');
-            fishWrapper.classList.add('fishData._id');
+            fishWrapper.classList.add('fred');
+            fishWrapper.classList.add(fishData._id);
             fishWrapper.innerHTML = fishTemplate;
 
             clients[fishData._id].fishObjects.push(fishWrapper);
