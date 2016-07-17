@@ -32,24 +32,25 @@
     };
 
     connection.onmessage = function (str) {
+
         try {
             var data = JSON.parse(str.data);
-            var message  = JSON.parse(data.data.text);
-            console.log(message);
+            // var message  = JSON.parse(data.data.text);
+            // console.log(message);
 
-            if(!clients[message._id]) {
+            if(!clients[data._id]) {
 
-                spawnFish(message);
+                spawnFish(data);
 
             }else {
 
-                updateFishPosition(message);
+                updateFishPosition(data);
             }
 
         } catch (e) {
             var data = JSON.parse(str.data);
-            var message  = JSON.parse(data.data.text);
-            console.error(data, message);
+
+            console.error(data);
         }
     };
 
