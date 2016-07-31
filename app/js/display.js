@@ -1,11 +1,13 @@
 (function () {
 
     var box = document.getElementById('box');
-    var connection = new WebSocket('ws://192.168.0.123:1337');
+    var connection = new WebSocket('ws://192.168.0.108:1337');
     var fishTemplate = '<div class="top_fin"></div><div class="tail_fin"></div> <div class="fish_body"><div class="eye"></div><div class="scale_1"></div><div class="scale_2"></div><div class="scale_3"></div><div class="scale_4"></div></div>';
     var clients = {};
     var surfacePlaceholders = [];
     var displayData = [];
+    var fishMove = {x:0, y:0};
+    var factor = 2;
 
     for(var i = 1; i<5; i++){
         surfacePlaceholders.push(document.getElementById('placeholder-' + i));
@@ -73,15 +75,26 @@
 
             surface.appendChild(fishWrapper);
         });
+
+
     }
 
-    function updateFishPosition (fishData) {
+    function updateFishPosition (fishData, rotated) {
+        setTimeout(function() {
+            if (fishData.orientation === 'landscape') {
+                fishData.x = fishData.x + fishData.y - fishData.x;
+                fishData.y = fishData.y + fishData.x - fishData.y;
+            }
 
-        clients[fishData._id].fishObjects.forEach(function (fishObject){
-            //TO DO: transformation
-            //transform: translate3d(x,y,z);
-        });
+            if (fishMove.x !== fishData.x) {
+                fishMove.x = fishData.x;
 
+                clients[fishData._id].fishObjects.forEach(function (fishObject){
+                    fishObject.style.transform = 'translate('+fishData.x*7+'px,'+fishData.y*7+'px)';
+                });
+            }
+
+        }, 100);
 
         clients[fishData._id] = clients[fishData._id].extend(fishData);
     }
