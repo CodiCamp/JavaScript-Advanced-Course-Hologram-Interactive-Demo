@@ -29,15 +29,14 @@
         };
 
         gyro.startTracking(function (coords) {
-            coords.type = 'client';
-            coords._id = localStorage._id;
-
             for (var coord in coords) {
-                if (coord !== "_id" && coord !== "type") {
+                if (coord !== "x" && coord !== "y" && coord !== "z") {
                     coords[coord] = parseFloat(coords[coord]).toFixed(3);
                 }
             }
 
+            coords.type = 'client';
+            coords._id = localStorage._id;
             coords.orientation = orientation;
 
             console.log(coords);
