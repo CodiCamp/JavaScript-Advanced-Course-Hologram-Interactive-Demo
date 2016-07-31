@@ -253,199 +253,7 @@
     -webkit-animation-iteration-count:infinite;
     -webkit-animation-timing-function: linear;
 }
-/*@keyframes swim{
-    from{
-        left:200px;
-    }
-    20%{
-        left:0px;
-        transform:scaleX(1);
-        z-index:90;
-    }
-    20.5%{
-        transform:scaleX(-1);
-        z-index:10;
-        left:-30px;
-    }
-    21%{
-        left:80px;
-    }
-    42%{
-        left:550px;
-    }
-    50%{
-        z-index:28;
-        top:130px;
-        left:630px;
-        transform:scaleX(-1);
-    }
-    50.5%{
-        transform:scaleX(1);
-        z-index:100;
-        left:630px;
-        top:160px;
-    }
-    51%{
-        left:530px;
-        z-index:150;
-    }
-    60%{
-        left:300px;
-        z-index:150;
-    }
-    64%{
-        left:200px;
-        z-index:150;
-    }
-    66%{
-        left:80px;
-        z-index:150;
-    }
-    69%{
-        left:-30px;
-        z-index:150;
-    }
-    70%{
-        top:105px;
-        left:-30px;
-        transform:scaleX(1);
-        z-index:90;
-    }
-    70.5%{
-        transform:scaleX(-1);
-        z-index:10;
-        left:-30px;
-    }
-    71%{
-        left:40px;
-    }
-    80%{
-        left:550px;
-    }
-    81%{
-        left:550px;
-        top:70px;
-    }
-    82%{
-        left:550px;
-        transform:scaleX(-1);
-    }
-    82.5%{
-        transform:scaleX(1);
-        top:70px;
-        left:550px;
-    }
-    84%{
-        top:105px;
-        left:500px;
-        z-index:28;
-    }
-    88%{
-        top:105px;
-        left:400px;
-        z-index:28;
-    }
-    to{
-        left:200px;
-    }
-}
 
-@-webkit-keyframes swim{
-    from{
-        left:200px;
-    }
-    20%{
-        left:0px;
-        -webkit-transform:scaleX(1);
-        z-index:90;
-    }
-    20.5%{
-        -webkit-transform:scaleX(-1);
-        z-index:10;
-        left:-30px;
-    }
-    21%{
-        left:80px;
-    }
-    42%{
-        left:550px;
-    }
-    50%{
-        z-index:28;
-        top:130px;
-        left:630px;
-        -webkit-transform:scaleX(-1);
-    }
-    50.5%{
-        -webkit-transform:scaleX(1);
-        z-index:100;
-        left:630px;
-        top:160px;
-    }
-    51%{
-        left:530px;
-        z-index:150;
-    }
-    60%{
-        left:300px;
-        z-index:150;
-    }
-    64%{
-        left:200px;
-        z-index:150;
-    }
-    66%{
-        left:80px;
-        z-index:150;
-    }
-    69%{
-        left:-30px;
-        z-index:150;
-    }
-    70%{
-        top:105px;
-        left:-30px;
-        -webkit-transform:scaleX(1);
-        z-index:90;
-    }
-    70.5%{
-        -webkit-transform:scaleX(-1);
-        z-index:10;
-        left:-30px;
-    }
-    71%{
-        left:40px;
-    }
-    80%{
-        left:550px;
-    }
-    81%{
-        left:550px;
-        top:70px;
-    }
-    82%{
-        left:550px;
-        -webkit-transform:scaleX(-1);
-    }
-    82.5%{
-        -webkit-transform:scaleX(1);
-        top:70px;
-        left:550px;
-    }
-    84%{
-        top:105px;
-        left:500px;
-        z-index:28;
-    }
-    88%{
-        top:105px;
-        left:400px;
-        z-index:28;
-    }
-    to{
-        left:200px;
-    }
-}*/
 /*end of fish path */
 .tail_fin{
     animation-name:tail;
@@ -598,4 +406,368 @@
     }
 }
 /*end of fish animations*/
-/*start of plant animations*/
+
+
+/* bubbles*/
+.bubble-wrap{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+.bubbles{
+    background-color: rgba(255, 255, 255, 0.16);
+    border: 1px solid #585858;
+    border-radius: 100px 100px 100px 100px;
+    -moz-border-radius: 100px 100px 100px 100px;
+    -webkit-border-radius: 100px 100px 100px 100px;
+    -o-border-radius: 100px 100px 100px 100px;
+    -ms-border-radius: 100px 100px 100px 100px;
+    height: 20px;
+    left: 50%;
+    position: absolute;
+    top: 100%;
+    width: 20px;
+    bottom: 0;
+}
+.b0 {
+    left: 30%
+}
+.b1{
+    left: 45%
+}
+.b2{
+    left: 60%;
+}
+.b3{
+    left: 40%;
+}
+.b4{
+    left: 50%;
+}
+.b5{
+    left: 55%;
+}
+
+/*start of bubble animations*/
+.b0{
+    animation-name:bubbles;
+    animation-delay:4s;
+    animation-duration:7s;
+    animation-iteration-count:infinite;
+    animation-timing-function: linear;
+
+    -moz-animation-name:bubbles;
+    -moz-animation-delay:4s;
+    -moz-animation-duration:7s;
+    -moz-animation-iteration-count:infinite;
+    -moz-animation-timing-function: linear;
+
+    -webkit-animation-name:bubbles;
+    -webkit-animation-delay:4s;
+    -webkit-animation-duration:7s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function: linear;
+}
+@keyframes bubbles{
+    from{
+        bottom: 0;
+        top: 100%;
+    }
+    to{
+        top:0px;
+        bottom: auto;
+    }
+}
+@-moz-keyframes bubbles{
+    from{
+        bottom: 0;
+        top: 100%;
+    }
+    50%{
+    }
+    to{
+        top:0px;
+        bottom: auto;
+    }
+}
+@-webkit-keyframes bubbles{
+    from{
+        bottom: 0;
+        top: 100%;
+    }
+    50%{
+    }
+    to{
+        top:0px;
+        bottom: auto;
+    }
+}
+.b1{
+    animation-name:bubbles;
+    animation-duration:8s;
+    animation-delay:4s;
+    animation-iteration-count:infinite;
+    animation-timing-function: linear;
+
+    -moz-animation-name:bubbles;
+    -moz-animation-duration:8s;
+    -moz-animation-delay:4s;
+    -moz-animation-iteration-count:infinite;
+    -moz-animation-timing-function: linear;
+
+    -webkit-animation-name:bubbles;
+    -webkit-animation-duration:8s;
+    -webkit-animation-delay:4s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function: linear;
+}
+@keyframes bubbles{
+    from{
+        bottom: 0;
+        top: 100%;
+    }
+    to{
+        top:0px;
+        bottom: auto;
+    }
+}
+@-moz-keyframes bubbles{
+    from{
+        bottom: 0;
+        top: 100%;
+    }
+    to{
+        top:0px;
+        bottom: auto;
+    }
+}
+@-webkit-keyframes bubbles{
+    from{
+        bottom: 0;
+        top: 100%;
+    }
+    to{
+        top:0px;
+        bottom: auto;
+    }
+}
+.b2{
+    animation-name:bubbles;
+    animation-delay:4s;
+    animation-duration:8s;
+    animation-iteration-count:infinite;
+    animation-timing-function: linear;
+
+    -moz-animation-name:bubbles;
+    -moz-animation-delay:4s;
+    -moz-animation-duration:8s;
+    -moz-animation-iteration-count:infinite;
+    -moz-animation-timing-function: linear;
+
+    -webkit-animation-name:bubbles;
+    -webkit-animation-delay:4s;
+    -webkit-animation-duration:8s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function: linear;
+}
+@keyframes bubbles{
+    from{
+        bottom: 0;
+        top: 100%;
+    }
+    to{
+        top:0px;
+        bottom: auto;
+    }
+}
+@-moz-keyframes bubbles{
+    from{
+        bottom: 0;
+        top: 100%;
+    }
+    to{
+        top:0px;
+        bottom: auto;
+    }
+}
+@-webkit-keyframes bubbles{
+    from{
+        bottom: 0;
+        top: 100%;
+    }
+    to{
+        top:0px;
+        bottom: auto;
+    }
+}
+.b3{
+    animation-name:bubbles;
+    animation-delay:2s;
+    animation-duration:9s;
+    animation-iteration-count:infinite;
+    animation-timing-function: linear;
+
+    -moz-animation-name:bubbles;
+    -moz-animation-delay:2s;
+    -moz-animation-duration:9s;
+    -moz-animation-iteration-count:infinite;
+    -moz-animation-timing-function: linear;
+
+    -webkit-animation-name:bubbles;
+    -webkit-animation-delay:2s;
+    -webkit-animation-duration:9s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function: linear;
+}
+@keyframes bubbles{
+    from{
+        bottom: 0;
+        left:50%;
+    }
+    25%{
+        left:20%;
+    }
+    50%{
+        left:60%;
+    }
+    75%{
+        left:50%;
+    }
+    to{
+        bottom: auto;
+        top:0px;
+        left:70%;
+    }
+}
+@-moz-keyframes bubbles{
+    from{
+        bottom: 0;
+        left:50%;
+    }
+    25%{
+        left:20%;
+    }
+    50%{
+        left:40%;
+    }
+    75%{
+        left:30%;
+    }
+    to{
+        bottom: auto;
+        top:0px;
+        left:50%;
+    }
+}
+@-webkit-keyframes bubbles{
+    from{
+        bottom: 0;
+        left:50%;
+    }
+    25%{
+        left:20%;
+    }
+    50%{
+        left:40%;
+    }
+    75%{
+        left:30%;
+    }
+    to{
+        bottom: auto;
+        top:0px;
+        left:50%;
+    }
+}
+.b4{
+    animation-name:bubbles;
+    animation-duration:7s;
+    animation-delay:2s;
+    animation-iteration-count:infinite;
+    animation-timing-function: linear;
+
+    -moz-animation-name:bubbles;
+    -moz-animation-duration:7s;
+    -moz-animation-delay:2s;
+    -moz-animation-iteration-count:infinite;
+    -moz-animation-timing-function: linear;
+
+    -webkit-animation-name:bubbles;
+    -webkit-animation-duration:7s;
+    -webkit-animation-delay:2s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function: linear;
+}
+@keyframes bubbles{
+    from{
+        bottom: 0;
+    }
+    to{
+        bottom: auto;
+        top:0px;
+    }
+}
+@-moz-keyframes bubbles{
+    from{
+        bottom: 0;
+    }
+    to{
+        top:0px;
+        bottom: auto;
+    }
+}
+@-webkit-keyframes bubbles{
+    from{
+        bottom: 0;
+    }
+    to{
+        top:0px;
+        bottom: auto;
+    }
+}
+.b5{
+    animation-name:bubbles;
+    animation-duration:8s;
+    animation-delay:1s;
+    animation-iteration-count:infinite;
+    animation-timing-function: linear;
+
+    -moz-animation-name:bubbles;
+    -moz-animation-duration:8s;
+    -moz-animation-delay:1s;
+    -moz-animation-iteration-count:infinite;
+    -moz-animation-timing-function: linear;
+
+    -webkit-animation-name:bubbles;
+    -webkit-animation-duration:8s;
+    -webkit-animation-delay:1s;
+    -webkit-animation-iteration-count:infinite;
+    -webkit-animation-timing-function: linear;
+}
+@keyframes bubbles{
+    from{
+        bottom: 0;
+    }
+    to{
+        top:0px;
+        bottom: auto;
+    }
+}
+@-moz-keyframes bubbles{
+    from{
+        bottom: 0;
+    }
+    to{
+        top:0px;
+        bottom: auto;
+    }
+}
+@-webkit-keyframes bubbles{
+    from{
+        bottom: 0;
+    }
+    to{
+        top:0px;
+        bottom: auto;
+    }
+}
