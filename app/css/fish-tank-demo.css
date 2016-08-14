@@ -8,6 +8,7 @@
     width: 290px;
     z-index: 90;
 }
+
 .fred{
     transform: rotate(-37deg);
     -moz-transform: rotate(-37deg);
@@ -17,7 +18,6 @@
     position: absolute;
     top: 26%;
     left: 36%;
-    transition: all 0.4s linear;
 }
 
 .fish_body{

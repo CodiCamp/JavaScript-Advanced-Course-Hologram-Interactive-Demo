@@ -32,7 +32,14 @@
             for (var coord in coords) {
                 if (coord !== "x" && coord !== "y" && coord !== "z") {
                     coords[coord] = parseFloat(coords[coord]).toFixed(3);
+                    coords[coord] = parseFloat(coords[coord]);
                 }
+            }
+
+            if (typeof coords.alpha !== 'undefined') {
+                coords.hasGyro = true;
+            }else {
+                coords.hasGyro = false;
             }
 
             coords.type = 'client';
