@@ -15,6 +15,7 @@
     var surfacePlaceholders = [];
     var displayData = [];
     var executionTime = (new Date()).getTime();
+    var limitX = document.getElementById('projection').clientWidth / 3;
 
     for(var i = 1; i<5; i++){
         surfacePlaceholders.push(document.getElementById('placeholder-' + i));
@@ -170,13 +171,13 @@
                     clients[fishData._id].fishObjects.forEach(function (fishObject){
 
                         if (fishData.movementCoefficient.horizontal > 0) {
-                           if (fishData.x < document.getElementById('projection').clientWidth) {
-                                fishData.x +=  -2 * fishData.movementCoefficient.horizontal;
+                           if (fishData.x < limitX) {
+                                fishData.x +=  1.5 * fishData.movementCoefficient.horizontal;
                            }
 
                         } else if (fishData.movementCoefficient.horizontal < 0){
-                            if (fishData.x > -document.getElementById('projection').clientWidth) {
-                                fishData.x += -2 * fishData.movementCoefficient.horizontal;
+                            if (fishData.x > -limitX) {
+                                fishData.x += 1.5 * fishData.movementCoefficient.horizontal;
                             }
                         }
 
