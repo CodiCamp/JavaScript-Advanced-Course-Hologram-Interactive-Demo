@@ -14,11 +14,7 @@
     var clients = {};
     var surfacePlaceholders = [];
     var displayData = [];
-    var initialFishCoords = {};
-    var movement = {
-        horizontal: 0,
-        vertical: 0
-    };
+    var executionTime = (new Date()).getTime();
 
     for(var i = 1; i<5; i++){
         surfacePlaceholders.push(document.getElementById('placeholder-' + i));
@@ -55,9 +51,9 @@
 
                 spawnFish(data);
 
-            }else {
+            } else {
 
-                updateFishPosition(data);
+                updateFishData(data);
             }
 
         } catch (e) {
@@ -67,23 +63,56 @@
         }
     };
 
+    draw();
+
+    function normalizeData(fishData){
+
+        var denominator = 0,
+            rotX = 0,
+            rotY = 0;
+
+        if (fishData.hasGyro) {
+            denominator = 14;
+        } else {
+            denominator = 0.1;
+        }
+
+        rotX = (fishData.initialFishCoords.horizontal - fishData.current.horizontal) / denominator;
+        rotY = (fishData.initialFishCoords.vertical - fishData.current.vertical) / denominator;
+
+        fishData.movementCoefficient = {
+            horizontal: rotX,
+            vertical: rotY
+        };
+    }
+
     /**
      * Creates HTML Fish instance
      * @param fishData
      */
     function spawnFish(fishData) {
-        initialFishCoords = {};
+
         clients[fishData._id] = fishData;
         clients[fishData._id].fishObjects = [];
+        clients[fishData._id].initialFishCoords = {};
+        clients[fishData._id].x = 0;
+        clients[fishData._id].y = 0;
 
-        if (typeof fishData.alpha !== 'undefined') {
-            initialFishCoords.horizontal = fishData.alpha;
-            initialFishCoords.vertical = fishData.beta;
+        if (fishData.hasGyro) {
+            clients[fishData._id].initialFishCoords.vertical = fishData.beta;
+            clients[fishData._id].initialFishCoords.horizontal = fishData.gamma;
 
         } else {
-            initialFishCoords.horizontal = fishData.x;
-            initialFishCoords.vertical = fishData.y;
+            clients[fishData._id].initialFishCoords.horizontal = fishData.x;
+            clients[fishData._id].initialFishCoords.vertical = fishData.y;
         }
+
+        clients[fishData._id].current = {
+            vertical: clients[fishData._id].initialFishCoords.vertical,
+            horizontal: clients[fishData._id].initialFishCoords.horizontal
+        };
+
+        normalizeData(clients[fishData._id]);
 
         surfacePlaceholders.forEach(function (surface, index) {
             var fishWrapper = document.createElement('div');
@@ -97,36 +126,69 @@
         });
     }
 
-    function updateFishPosition (fishData, rotated) {
-        setTimeout(function() {
+    function draw () {
 
-            if (typeof fishData.alpha !== 'undefined') {
-                movement.horizontal = fishData.alpha;
-                movement.vertical = fishData.beta;
+        updateFishPosition();
+    }
 
-            } else {
-                movement.horizontal = fishData.x;
-                movement.vertical = fishData.y;
+    function updateFishData (fishData) {
+        var currentCoords = clients[fishData._id].current;
+
+        if (fishData.hasGyro) {
+            currentCoords.horizontal = fishData.gamma;
+            currentCoords.vertical = fishData.beta;
+
+        } else {
+            currentCoords.horizontal = fishData.x;
+            currentCoords.vertical = fishData.y;
+        }
+
+        if (fishData.orientation === 'landscape') {
+            currentCoords.horizontal = currentCoords.horizontal + currentCoords.vertical - currentCoords.horizontal;
+            currentCoords.vertical = currentCoords.vertical + currentCoords.horizontal - currentCoords.vertical;
+        }
+
+        normalizeData(clients[fishData._id]);
+    }
+
+    /**
+     * FN to be looped in RAF
+     */
+    function updateFishPosition () {
+        //24 FPS
+        var newTime = new Date().getTime();
+        if(newTime - executionTime > 41){
+
+            executionTime = newTime;
+
+            for (var fishData in clients) {
+
+                if(clients.hasOwnProperty(fishData)) {
+
+                    fishData = clients[fishData];
+
+                    clients[fishData._id].fishObjects.forEach(function (fishObject){
+
+                        if (fishData.movementCoefficient.horizontal > 0) {
+                           if (fishData.x < document.getElementById('projection').clientWidth) {
+                                fishData.x +=  -2 * fishData.movementCoefficient.horizontal;
+                           }
+
+                        } else if (fishData.movementCoefficient.horizontal < 0){
+                            if (fishData.x > -document.getElementById('projection').clientWidth) {
+                                fishData.x += -2 * fishData.movementCoefficient.horizontal;
+                            }
+                        }
+
+                        fishObject.style.transform = 'translate('+fishData.x+'px,'+fishData.y+'px)';
+
+                    });
+                }
+
             }
+        }
 
-            if (fishData.orientation === 'landscape') {
-                movement.horizontal = movement.horizontal + movement.vertical - movement.horizontal;
-                movement.vertical = movement.vertical + movement.horizontal - movement.vertical;
-            }
-
-            var movementAlteration = {
-                x: (initialFishCoords.horizontal - movement.horizontal)/10,
-                y: (initialFishCoords.vertical - movement.vertical)/10
-            }
-
-            clients[fishData._id].fishObjects.forEach(function (fishObject){
-                fishObject.style.transform = 'translate('+movementAlteration.x*10+'px,'+movementAlteration.y*10+'px)';
-            });
-
-
-        }, 100);
-
-        clients[fishData._id] = clients[fishData._id].extend(fishData);
+        requestAnimationFrame(updateFishPosition);
     }
 
 })();
