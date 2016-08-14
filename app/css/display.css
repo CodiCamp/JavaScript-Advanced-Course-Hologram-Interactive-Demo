@@ -21,23 +21,27 @@ body {
 }
 
 .surface-top {
-    background: #fafafa;
+    /*background: #fafafa;*/
+    background: #000;
     transform: translate(0, -70.65%) rotate(45deg);
 }
 
 .surface-bottom {
-    background: #dababa;
+    /*background: #dababa;*/
+    background: #000;
     transform: translate(0, 70.65%) rotate(45deg);
 }
 
 .surface-left {
     /*background: #dc7402;*/
-    background: #DC74EE;
+    /*background: #DC74EE;*/
+    background: #000;
     transform: translate(-70.65%, 0) rotate(45deg);
 }
 
 .surface-right {
-    background: #7402dc;
+    /*background: #7402dc;*/
+    background: #000;
     transform: translate(70.65%, 0)rotate(45deg);
 }
 
