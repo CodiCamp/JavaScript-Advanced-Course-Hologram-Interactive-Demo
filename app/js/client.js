@@ -28,6 +28,8 @@
             status.innerHTML = 'Connection error! Server down?';
         };
 
+        gyro.frequency = 50;
+
         gyro.startTracking(function (coords) {
             for (var coord in coords) {
                 if (coord !== "x" && coord !== "y" && coord !== "z") {

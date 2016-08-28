@@ -9,7 +9,14 @@
     z-index: 90;
 }
 
-.fred{
+.animation-flip {
+    width: 80px;
+    height: 138px;
+    /*transform-origin: 50% 50%;*/
+    transition: transform 0.5s ease-in-out;
+}
+
+.fred {
     transform: rotate(-37deg);
     -moz-transform: rotate(-37deg);
     -webkit-transform: rotate(-37deg);
@@ -19,6 +26,7 @@
     top: 26%;
     left: 36%;
 }
+
 
 .fish_body{
     transform: skewX(30deg) skewY(5deg);
@@ -38,6 +46,7 @@
     -webkit-box-shadow: 6px -12px 15px #3A2104 inset, -2px -3px 4px #281602 inset;
     -o-box-shadow: 6px -12px 15px #3A2104 inset, -2px -3px 4px #281602 inset;
     -ms-box-shadow: 6px -12px 15px #3A2104 inset, -2px -3px 4px #281602 inset;
+
     height: 72px;
     position: absolute;
     top: 60px;
