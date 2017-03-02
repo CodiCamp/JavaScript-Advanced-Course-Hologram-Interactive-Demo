@@ -171,7 +171,7 @@
         var newTime = new Date().getTime();
 
         //
-        if (newTime - executionTime > 41) {
+        if (newTime - executionTime > 31) {
 
             executionTime = newTime;
 
@@ -211,7 +211,7 @@
                         }
 
                         //apply the movement
-                        fishObject.style.transform = 'translate('+fishData.x+'px,'+fishData.y+'px)';
+                        fishObject.style.transform = 'translate3d('+fishData.x+'px,'+fishData.y+'px, 0)';
                         fishObject.firstChild.style.transform = 'scaleX('+flip+')';
                     });
                 }
