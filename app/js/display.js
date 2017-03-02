@@ -2,7 +2,8 @@
 
     var box = document.getElementById('box');
     var connection = new WebSocket('ws://192.168.0.123:1337');
-    var fishTemplate = '<div class="top_fin"></div>' +
+    var fishTemplate = '<div class="animation-flip">'+
+        '<div class="top_fin"></div>' +
         '<div class="tail_fin"></div> ' +
         '<div class="fish_body">' +
         '<div class="eye"></div>' +
@@ -10,12 +11,22 @@
         '<div class="scale_2"></div>' +
         '<div class="scale_3"></div>' +
         '<div class="scale_4"></div>' +
+        '</div>'+
         '</div>';
     var clients = {};
     var surfacePlaceholders = [];
     var displayData = [];
     var executionTime = (new Date()).getTime();
-    var limitX = document.getElementById('projection').clientWidth / 3;
+
+    var limitsX = {
+        min: document.querySelector('.surface-inner-wrapper').clientWidth / 5.3,
+        max: document.getElementById('projection').clientWidth / 3
+    };
+
+    var limitsY = {
+        min: document.querySelector('.surface-inner-wrapper').clientHeight / 7,
+        max: document.getElementById('projection').clientHeight / 12
+    };
 
     for(var i = 1; i<5; i++){
         surfacePlaceholders.push(document.getElementById('placeholder-' + i));
@@ -128,7 +139,6 @@
     }
 
     function draw () {
-
         updateFishPosition();
     }
 
@@ -144,6 +154,7 @@
             currentCoords.vertical = fishData.y;
         }
 
+        //if the phone is rotated in landscape mode, change the places
         if (fishData.orientation === 'landscape') {
             currentCoords.horizontal = currentCoords.horizontal + currentCoords.vertical - currentCoords.horizontal;
             currentCoords.vertical = currentCoords.vertical + currentCoords.horizontal - currentCoords.vertical;
@@ -158,31 +169,50 @@
     function updateFishPosition () {
         //24 FPS
         var newTime = new Date().getTime();
-        if(newTime - executionTime > 41){
+
+        //
+        if (newTime - executionTime > 31) {
 
             executionTime = newTime;
 
             for (var fishData in clients) {
 
-                if(clients.hasOwnProperty(fishData)) {
+                if (clients.hasOwnProperty(fishData)) {
 
                     fishData = clients[fishData];
 
-                    clients[fishData._id].fishObjects.forEach(function (fishObject){
-
+                    clients[fishData._id].fishObjects.forEach(function(fishObject) {
+                        var flip;
+                        //restrict the horizontal movement of the fish
                         if (fishData.movementCoefficient.horizontal > 0) {
-                           if (fishData.x < limitX) {
-                                fishData.x +=  1.5 * fishData.movementCoefficient.horizontal;
+
+                           if (fishData.x < limitsX.max) {
+                                fishData.x += 1.5 * fishData.movementCoefficient.horizontal;
+                                flip = '-1';
                            }
 
-                        } else if (fishData.movementCoefficient.horizontal < 0){
-                            if (fishData.x > -limitX) {
+                        } else if (fishData.movementCoefficient.horizontal < 0) {
+                            if (fishData.x > -limitsX.min) {
                                 fishData.x += 1.5 * fishData.movementCoefficient.horizontal;
+                                flip = '1';
                             }
                         }
 
-                        fishObject.style.transform = 'translate('+fishData.x+'px,'+fishData.y+'px)';
+                        //restrict the vertical movement of the fish
+                        if (fishData.movementCoefficient.vertical > 0) {
+                           if (fishData.y < limitsY.max) {
+                                fishData.y += 1.5 * fishData.movementCoefficient.vertical;
+                           }
 
+                        } else if (fishData.movementCoefficient.vertical < 0) {
+                            if (fishData.y > -limitsY.min) {
+                                fishData.y += 1.5 * fishData.movementCoefficient.vertical;
+                            }
+                        }
+
+                        //apply the movement
+                        fishObject.style.transform = 'translate3d('+fishData.x+'px,'+fishData.y+'px, 0)';
+                        fishObject.firstChild.style.transform = 'scaleX('+flip+')';
                     });
                 }
 
